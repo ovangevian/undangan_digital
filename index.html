@@ -8,7 +8,6 @@
       href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
-
     <style>
       * {
         margin: 0;
@@ -171,7 +170,6 @@
         opacity: 1;
         transform: translateY(0);
       }
-      /* Tombol musik */
       #music-btn {
         position: fixed;
         bottom: 20px;
@@ -192,12 +190,11 @@
         background: #e16476;
       }
 
-      /* ✅ Tambahan agar gambar galeri menurun ke bawah tanpa ubah kode asli */
+      /* ✅ Galeri satu kolom */
       .gallery {
         grid-template-columns: 1fr !important;
         justify-items: center;
       }
-
       .gallery img {
         width: 80% !important;
         height: auto !important;
@@ -244,7 +241,6 @@
           <img src="gambar2.jpg" alt="" />
           <img src="gambar3.jpg" alt="" />
           <img src="gambar4.jpg" alt="" />
-          <img src="gambar5.jpg" alt="" />
         </div>
       </section>
 
@@ -264,10 +260,8 @@
 
     <!-- Musik -->
     <audio id="bgMusic" preload="auto" loop>
-      <source
-        src="https://cdn.pixabay.com/download/audio/2023/03/29/audio_2e9d4d4412.mp3?filename=love-story-piano-143398.mp3"
-        type="audio/mpeg"
-      />
+      <source src="lagu_baru.mp3" type="audio/mpeg" />
+      Browser Anda tidak mendukung elemen audio.
     </audio>
 
     <script>
@@ -293,7 +287,16 @@
             musicBtn.innerText = "⏸️";
           })
           .catch(() => {
-            musicBtn.innerText = "🎵";
+            // jika autoplay gagal, nyalakan setelah klik pertama
+            document.body.addEventListener(
+              "click",
+              () => {
+                bgMusic.play();
+                isPlaying = true;
+                musicBtn.innerText = "⏸️";
+              },
+              { once: true }
+            );
           });
       }
 
