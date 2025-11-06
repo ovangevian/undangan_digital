@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Undangan Fani & Herman</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #fff7f8;
+        color: #4b2c2c;
+        overflow-x: hidden;
+      }
+      .cover {
+        height: 100vh;
+        background: url("gambar1.jpg") center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        position: relative;
+      }
+      .cover::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+      }
+      .cover-content {
+        position: relative;
+        z-index: 1;
+        animation: fadeIn 2s ease;
+      }
+      .cover h1 {
+        font-family: "Great Vibes", cursive;
+        font-size: 3em;
+        margin-bottom: 0.3em;
+      }
+      .cover p {
+        margin-bottom: 25px;
+      }
+      .cover button {
+        background-color: #fbb1bd;
+        color: #fff;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .cover button:hover {
+        background: #ff99aa;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .main {
+        display: none;
+        animation: fadeIn 1s ease;
+      }
+      header {
+        text-align: center;
+        background: linear-gradient(180deg, #ffe5ec, #fff7f8);
+        padding: 60px 20px 40px;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 40px;
+      }
+      header h2 {
+        font-family: "Great Vibes", cursive;
+        font-size: 2.5em;
+        color: #b85a70;
+      }
+      header p {
+        margin-top: 10px;
+        font-size: 0.95em;
+        color: #5a3d3d;
+      }
+      .section {
+        padding: 40px 20px;
+        text-align: center;
+      }
+      .couple img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 10px;
+        border: 4px solid #fbb1bd;
+      }
+      .details {
+        margin-top: 20px;
+        line-height: 1.6;
+      }
+      .button-group {
+        margin-top: 20px;
+      }
+      .button-group button {
+        background: #b85a70;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .button-group button:hover {
+        background: #a34c61;
+      }
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .gallery img {
+        width: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+        height: 100px;
+        transition: transform 0.3s ease;
+      }
+      .gallery img:hover {
+        transform: scale(1.05);
+      }
+      #rsvp button {
+        background: #f77a8a;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 15px;
+      }
+      #rsvp button:hover {
+        background: #e16476;
+      }
+      footer {
+        text-align: center;
+        font-size: 0.9em;
+        color: #664b4b;
+        padding: 20px;
+        background: #fff0f3;
+      }
+      .fade-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 1s, transform 1s;
+      }
+      .fade-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Tombol musik */
+      #music-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #f77a8a;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 55px;
+        height: 55px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        font-size: 1.5em;
+        z-index: 100;
+        display: none;
+      }
+      #music-btn:hover {
+        background: #e16476;
+      }
+
+      /* ✅ Tambahan agar gambar galeri menurun ke bawah tanpa ubah kode asli */
+      .gallery {
+        grid-template-columns: 1fr !important;
+        justify-items: center;
+      }
+
+      .gallery img {
+        width: 80% !important;
+        height: auto !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- COVER -->
+    <div id="cover" class="cover">
+      <div class="cover-content">
+        <h1>Fani &amp; Herman</h1>
+        <p>Undangan Pernikahan<br />19 November 2025</p>
+        <button onclick="openInvite()">💌 Buka Undangan</button>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div id="main" class="main">
+      <header>
+        <h2>Fani Aljaber,S.Pd &amp; Suherman</h2>
+        <p>
+          Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang
+          Bapak/Ibu/Saudara/i untuk hadir dalam acara pernikahan kami.
+        </p>
+      </header>
+
+      <section class="section fade-scroll">
+        <div class="couple">
+          <img src="solo1.jpg" alt="Fani" />
+          <img src="solo2.jpg" alt="Herman" />
+        </div>
+        <div class="details">
+          <b>🗓️ Tanggal:</b> 19 November 2025<br />
+          <b>📍 Lokasi:</b> Depan Halaman Rumah Mempelai Wanita
+        </div>
+        <div class="button-group">
+          <button onclick="openMap()">📍 Lihat Lokasi</button>
+        </div>
+      </section>
+
+      <section class="section fade-scroll">
+        <h3>Galeri Kami</h3>
+        <div class="gallery">
+          <img src="gambar2.jpg" alt="" />
+          <img src="gambar3.jpg" alt="" />
+          <img src="gambar4.jpg" alt="" />
+          <img src="gambar5.jpg" alt="" />
+        </div>
+      </section>
+
+      <section class="section fade-scroll" id="rsvp">
+        <h3>Konfirmasi Kehadiran</h3>
+        <p>Kehadiran Anda merupakan kehormatan bagi kami.</p>
+        <button onclick="confirmRSVP()">Konfirmasi via WhatsApp</button>
+      </section>
+
+      <footer>
+        <p>© 2025 Fani &amp; Herman — Undangan Digital</p>
+      </footer>
+    </div>
+
+    <!-- Tombol musik -->
+    <button id="music-btn" onclick="toggleMusic()">🎵</button>
+
+    <!-- Musik -->
+    <audio id="bgMusic" preload="auto" loop>
+      <source
+        src="https://cdn.pixabay.com/download/audio/2023/03/29/audio_2e9d4d4412.mp3?filename=love-story-piano-143398.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <script>
+      const bgMusic = document.getElementById("bgMusic");
+      const musicBtn = document.getElementById("music-btn");
+      let isPlaying = false;
+
+      function openInvite() {
+        document.getElementById("cover").style.opacity = "0";
+        setTimeout(() => {
+          document.getElementById("cover").style.display = "none";
+          document.getElementById("main").style.display = "block";
+          playMusic();
+          musicBtn.style.display = "block";
+        }, 800);
+      }
+
+      function playMusic() {
+        bgMusic
+          .play()
+          .then(() => {
+            isPlaying = true;
+            musicBtn.innerText = "⏸️";
+          })
+          .catch(() => {
+            musicBtn.innerText = "🎵";
+          });
+      }
+
+      function toggleMusic() {
+        if (isPlaying) {
+          bgMusic.pause();
+          isPlaying = false;
+          musicBtn.innerText = "🎵";
+        } else {
+          bgMusic.play();
+          isPlaying = true;
+          musicBtn.innerText = "⏸️";
+        }
+      }
+
+      function openMap() {
+        window.open("https://maps.app.goo.gl/CG5uEnGzcJfbhkC78", "_blank");
+      }
+
+      function confirmRSVP() {
+        window.open(
+          "https://wa.me/6282217877316?text=Halo%20Fani%20%26%20Herman,%20saya%20ingin%20konfirmasi%20kehadiran.",
+          "_blank"
+        );
+      }
+
+      // Efek scroll
+      const elements = document.querySelectorAll(".fade-scroll");
+      window.addEventListener("scroll", () => {
+        const triggerBottom = window.innerHeight * 0.8;
+        elements.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < triggerBottom) {
+            el.classList.add("visible");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
